@@ -1,469 +1,712 @@
 <!DOCTYPE html>
-<html lang="ms" class="scroll-smooth">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Laporan GBK - AI Pintar Menjana Laporan Kaunseling</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts & Lucide Icons -->
+    <title>e-Laporan GBK | AI Pintar Pembantu Guru Bimbingan dan Kaunseling</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #eef2ff;
+            --accent: #06b6d4;
+            --bg-main: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(22, 163, 74, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(22, 163, 74, 0.4); }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .ai-glow { animation: pulseGlow 3s infinite; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            padding: 5rem 1rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(79, 70, 229, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-badge {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+            margin-bottom: 0.75rem;
+            letter-spacing: -1px;
+        }
+
+        .logo-text-innovation {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .logo-text-forward {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+        }
+
+        /* Main App Container */
+        .container {
+            max-width: 900px;
+            margin: -2.5rem auto 4rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .input-section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-section h2 i {
+            color: var(--primary);
+        }
+
+        .textarea-wrapper {
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-main);
+            resize: vertical;
+            transition: var(--transition);
+            outline: none;
+            background-color: #fafafa;
+        }
+
+        textarea:focus {
+            border-color: var(--primary);
+            background-color: var(--surface);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .suggestions-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .suggestions-hint span {
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Loading State */
+        .loading-state {
+            display: none;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid var(--primary-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-weight: 500;
+            color: var(--text-muted);
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Output Section */
+        .output-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .output-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Report Elements Grid / Structure */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .analysis-box {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 10px;
+        }
+
+        .analysis-box label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .analysis-box .value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .sub-value {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-top: 0.2rem;
+            font-weight: 500;
+        }
+
+        /* Final Official Documentation Report Style */
+        .official-report {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .report-section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .report-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .report-content-box {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            background: #fdfdfd;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px dashed var(--border);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .card { padding: 1.25rem; }
+            .action-row { flex-direction: column; align-items: stretch; }
+            .cta-btn { width: 100%; justify-content: center; }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-200/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold tracking-wider text-lg shadow-md">
-                    RR
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-tight text-slate-900 block leading-none">e-Laporan GBK</span>
-                    <span class="text-[10px] tracking-widest text-brand-600 font-semibold uppercase mt-0.5 block">KPM Standard</span>
-                </div>
-            </div>
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
-                <a href="#generator" class="hover:text-brand-600 transition-colors">Jana Laporan</a>
-                <a href="#features" class="hover:text-brand-600 transition-colors">Ciri-Ciri</a>
-                <a href="#howitworks" class="hover:text-brand-600 transition-colors">Panduan</a>
-            </nav>
-            <div>
-                <a href="#generator" class="inline-flex items-center px-4 py-2 rounded-xl bg-slate-900 hover:bg-brand-600 text-white text-sm font-medium shadow-sm transition-all duration-200">
-                    <i data-lucide="sparkles" class="w-4 h-4 mr-2"></i>
-                    Cuba AI Percuma
-                </a>
-            </div>
+    <!-- BRANDING HERO SECTION -->
+    <header class="hero" id="top">
+        <div class="logo-container">
+            <div class="logo-badge">RR</div>
+            <div class="logo-text-innovation">INNOVATION</div>
+            <div class="logo-text-forward">FORWARD TOGETHER</div>
         </div>
+        <h1>e-Laporan GBK</h1>
+        <p>"AI Pintar Membantu GBK Menjana Laporan Bimbingan dan Kaunseling Secara Sistematik"</p>
+        <button class="cta-btn" onclick="scrollToInput()">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Mula Jana Laporan
+        </button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-gradient-to-b from-slate-100 via-slate-50 to-white">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40"></div>
+    <!-- MAIN APP INTERFACE -->
+    <main class="container">
         
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <!-- Branding Hero Subheader -->
-            <div class="inline-flex flex-col items-center mb-8">
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-700 text-white flex items-center justify-center font-black tracking-widest text-2xl shadow-xl mb-4 border border-slate-700">
-                    RR
-                </div>
-                <span class="text-xs font-bold tracking-[0.25em] text-slate-500 uppercase">INNOVATION</span>
-                <span class="text-xs font-extrabold tracking-[0.3em] text-brand-600 uppercase mt-1">FORWARD TOGETHER</span>
+        <!-- Input Card -->
+        <section class="card input-section" id="generator-section">
+            <h2><i class="fa-solid fa-pen-nib"></i> Masukkan Situasi, Aktiviti atau Isu Murid</h2>
+            <div class="textarea-wrapper">
+                <textarea id="userInput" placeholder="Contoh: Murid Tahun 5 bergaduh kerana salah faham dengan rakan, atau bimbingan kelas tentang peraturan sekolah."></textarea>
             </div>
-
-            <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight max-w-4xl mx-auto mb-6">
-                e-Laporan <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-500">GBK</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
-                "AI Pintar Menjana Laporan Kaunseling GBK Secara Automatik"
-            </p>
-            <div>
-                <a href="#generator" class="inline-flex items-center px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-base font-semibold shadow-lg shadow-brand-600/25 transition-all duration-200 transform hover:-translate-y-0.5">
-                    <i data-lucide="cpu" class="w-5 h-5 mr-2"></i>
-                    Mula Jana Laporan
-                </a>
+            
+            <div class="action-row">
+                <div class="suggestions-hint">
+                    Cuba contoh cepat: <span onclick="loadExample(1)">Bergaduh rakan</span> | <span onclick="loadExample(2)">Peraturan kelas</span> | <span onclick="loadExample(3)">Hala tuju kerjaya</span>
+                </div>
+                <button class="cta-btn" id="generateBtn" onclick="processAIAnalysis()">
+                    <i class="fa-solid fa-bolt"></i> Jana Analisis & Laporan
+                </button>
             </div>
+        </section>
 
-            <!-- Quick Stats / Badges -->
-            <div class="mt-16 pt-10 border-t border-slate-200/60 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left">
-                <div class="flex items-center space-x-3 p-3 rounded-xl bg-white shadow-sm border border-slate-100">
-                    <div class="p-2 rounded-lg bg-brand-50 text-brand-600"><i data-lucide="zap" class="w-5 h-5"></i></div>
-                    <div>
-                        <div class="text-xs text-slate-500 font-medium">Automasi Penuh</div>
-                        <div class="text-sm font-bold text-slate-800">Tanpa Kategori Manual</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 p-3 rounded-xl bg-white shadow-sm border border-slate-100">
-                    <div class="p-2 rounded-lg bg-brand-50 text-brand-600"><i data-lucide="brain" class="w-5 h-5"></i></div>
-                    <div>
-                        <div class="text-xs text-slate-500 font-medium">Teori Kaunseling</div>
-                        <div class="text-sm font-bold text-slate-800">6 Teori Utama</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 p-3 rounded-xl bg-white shadow-sm border border-slate-100">
-                    <div class="p-2 rounded-lg bg-brand-50 text-brand-600"><i data-lucide="file-text" class="w-5 h-5"></i></div>
-                    <div>
-                        <div class="text-xs text-slate-500 font-medium">Format Rasmi</div>
-                        <div class="text-sm font-bold text-slate-800">Piawaian KPM</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 p-3 rounded-xl bg-white shadow-sm border border-slate-100">
-                    <div class="p-2 rounded-lg bg-brand-50 text-brand-600"><i data-lucide="clock" class="w-5 h-5"></i></div>
-                    <div>
-                        <div class="text-xs text-slate-500 font-medium">Jimat Masa</div>
-                        <div class="text-sm font-bold text-slate-800">Pantas & Efisien</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Loading State Card -->
+        <section class="card loading-state" id="loadingState">
+            <div class="spinner"></div>
+            <div class="loading-text">AI sedang menganalisis jenis perkhidmatan dan memproses dokumentasi GBK...</div>
+        </section>
 
-    <!-- Main Generator & Result Section -->
-    <section id="generator" class="py-20 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 tracking-wide uppercase border border-brand-200">AI Report Generator</span>
-                <h2 class="text-3xl font-bold text-slate-900 mt-3">Penjana Laporan Pintar GBK</h2>
-                <p class="text-slate-600 mt-2">Hanya masukkan isu murid, biarkan sistem AI menganalisis dan menjana laporan profesional.</p>
-            </div>
-
-            <!-- Input Box Card -->
-            <div class="glass-card rounded-2xl shadow-xl p-6 sm:p-8 mb-10 ai-glow border border-slate-200">
-                <div class="mb-4 flex items-center justify-between">
-                    <label for="issueInput" class="block text-sm font-semibold text-slate-700 flex items-center">
-                        <i data-lucide="message-square-plus" class="w-4 h-4 mr-2 text-brand-600"></i>
-                        Masukkan Isu Murid
-                    </label>
-                    <button type="button" onclick="loadExample()" class="text-xs font-medium text-brand-600 hover:text-brand-700 underline bg-brand-50 hover:bg-brand-100 px-2.5 py-1 rounded-lg transition-colors">
-                        Guna Contoh Isu
+        <!-- AI Analysis & Report Output Card -->
+        <section class="card output-section" id="outputSection">
+            <div class="output-header">
+                <h3><i class="fa-solid fa-robot"></i> BAHAGIAN 1: ANALISIS AI</h3>
+                <div class="output-actions">
+                    <button class="btn-secondary" onclick="copyReport()">
+                        <i class="fa-regular fa-copy"></i> Salin Laporan
                     </button>
-                </div>
-                
-                <textarea id="issueInput" rows="4" 
-                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-slate-800 placeholder-slate-400 text-base transition-all resize-y outline-none"
-                    placeholder="Contoh: Murid Tahun 4 sering ponteng kerana tidak mendapat perhatian ibu bapa."></textarea>
-                
-                <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-xs text-slate-500 flex items-center">
-                        <i data-lucide="info" class="w-3.5 h-3.5 mr-1 text-slate-400"></i>
-                        Pendekatan, Fokus, Sub Fokus & Teori dikesan secara automatik oleh AI.
-                    </p>
-                    <button id="generateBtn" onclick="generateReport()" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-md shadow-brand-600/20 transition-all duration-200">
-                        <i data-lucide="sparkles" class="w-5 h-5 mr-2"></i>
-                        Jana Laporan AI
+                    <button class="btn-secondary" onclick="window.print()">
+                        <i class="fa-solid fa-print"></i> Cetak / Eksport
                     </button>
                 </div>
             </div>
 
-            <!-- Loading Spinner State -->
-            <div id="loadingState" class="hidden text-center py-16">
-                <div class="inline-block relative w-16 h-16 mb-4">
-                    <div class="absolute inset-0 rounded-full border-4 border-brand-200 animate-ping"></div>
-                    <div class="absolute inset-0 rounded-full border-4 border-brand-600 border-t-transparent animate-spin"></div>
+            <!-- Structured Analysis Grid -->
+            <div class="analysis-grid">
+                <div class="analysis-box">
+                    <label>1. Jenis Perkhidmatan</label>
+                    <div class="value" id="resServiceType">-</div>
                 </div>
-                <h3 class="text-lg font-semibold text-slate-800">AI Sedang Menganalisis Isu...</h3>
-                <p class="text-sm text-slate-500 mt-1">Menentukan pendekatan psikologi, teori kaunseling dan merangka ayat laporan rasmi.</p>
-            </div>
-
-            <!-- Output Container (Hidden by default) -->
-            <div id="outputContainer" class="hidden space-y-8">
-                
-                <!-- 3. AI Analysis Display -->
-                <div class="bg-slate-900 text-white rounded-2xl shadow-xl p-6 sm:p-8 border border-slate-800">
-                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                        <div class="flex items-center space-x-3">
-                            <div class="p-2 rounded-lg bg-brand-500/20 text-brand-400">
-                                <i data-lucide="cpu" class="w-5 h-5"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white tracking-wide">Analisis AI</h3>
-                        </div>
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
-                            Analisis Selesai
-                        </span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50">
-                            <span class="text-xs font-medium text-slate-400 block mb-1">Pendekatan</span>
-                            <span id="resPendekatan" class="text-sm font-bold text-brand-400">-</span>
-                        </div>
-                        <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50">
-                            <span class="text-xs font-medium text-slate-400 block mb-1">Fokus Utama</span>
-                            <span id="resFokus" class="text-sm font-bold text-emerald-400">-</span>
-                        </div>
-                        <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50">
-                            <span class="text-xs font-medium text-slate-400 block mb-1">Sub Fokus</span>
-                            <span id="resSubFokus" class="text-sm font-bold text-cyan-400">-</span>
-                        </div>
-                        <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50">
-                            <span class="text-xs font-medium text-slate-400 block mb-1">Teori Kaunseling</span>
-                            <span id="resTeori" class="text-sm font-bold text-amber-400">-</span>
-                        </div>
-                    </div>
+                <div class="analysis-box">
+                    <label>2. Tajuk / Aktiviti</label>
+                    <div class="value" id="resTitle">-</div>
                 </div>
-
-                <!-- 4. Generated Report Display -->
-                <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-slate-200">
-                    <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
-                        <div class="flex items-center space-x-3">
-                            <div class="p-2 rounded-lg bg-brand-50 text-brand-600">
-                                <i data-lucide="file-check-2" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-900">Format Laporan GBK Rasmi</h3>
-                                <p class="text-xs text-slate-500">Siap untuk disalin atau dimuat turun ke sistem dokumentasi</p>
-                            </div>
-                        </div>
-                        <button onclick="copyReport()" class="inline-flex items-center px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium transition-colors">
-                            <i data-lucide="copy" class="w-4 h-4 mr-2"></i>
-                            <span id="copyTextBtn">Salin Laporan</span>
-                        </button>
-                    </div>
-
-                    <div class="space-y-6 text-slate-700">
-                        <!-- A. PERKARA -->
-                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-100">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2 flex items-center">
-                                <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center mr-2 text-xs font-black">A</span>
-                                PERKARA
-                            </h4>
-                            <p id="resPerkara" class="text-base text-slate-800 leading-relaxed font-normal"></p>
-                        </div>
-
-                        <!-- B. PERSOALAN -->
-                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-100">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2 flex items-center">
-                                <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center mr-2 text-xs font-black">B</span>
-                                PERSOALAN
-                            </h4>
-                            <p id="resPersoalan" class="text-base text-slate-800 leading-relaxed font-semibold italic"></p>
-                        </div>
-
-                        <!-- C. INTERVENSI GBK -->
-                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-100">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2 flex items-center">
-                                <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center mr-2 text-xs font-black">C</span>
-                                INTERVENSI GBK
-                            </h4>
-                            <p id="resIntervensi" class="text-base text-slate-800 leading-relaxed font-normal"></p>
-                        </div>
-                    </div>
+                <div class="analysis-box">
+                    <label>3. Pendekatan</label>
+                    <div class="value" id="resApproach">-</div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Features Section -->
-    <section id="features" class="py-20 bg-slate-100/70 border-t border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 tracking-wide uppercase border border-brand-200">Ciri-Ciri Utama</span>
-                <h2 class="text-3xl font-bold text-slate-900 mt-3">Direka Khas Untuk Guru Bimbingan & Kaunseling</h2>
-                <p class="text-slate-600 mt-2">Memudahkan urusan dokumentasi harian sekolah dengan teknologi kecerdasan buatan.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6">
-                        <i data-lucide="cpu" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Analisis Isu Automatik</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Tanpa perlu pilih kategori rumit. Masukkan isu ringkas dan AI tentukan pendekatan & fokus dengan tepat.</p>
+                <div class="analysis-box">
+                    <label>4. Fokus Utama & Sub Fokus</label>
+                    <div class="value" id="resFocus">-</div>
+                    <div class="sub-value" id="resSubFocus">-</div>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6">
-                        <i data-lucide="file-text" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Format Laporan GBK</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Menjana laporan lengkap mengikut struktur rasmi bahagian Perkara, Persoalan, dan Intervensi GBK.</p>
+                <div class="analysis-box">
+                    <label>5. Fokus Sampingan</label>
+                    <div class="value" id="resSecondaryFocus">-</div>
                 </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6">
-                        <i data-lucide="book-open" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Berasaskan Teori</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Pilihan teori kaunseling profesional seperti Reality Therapy, CBT, REBT, Person Centered dan lain-lain.</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Menjimatkan Masa</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Mengurangkan beban kerja pentadbiran dokumentasi harian guru sehingga 80% dengan pantas.</p>
+                <div class="analysis-box">
+                    <label>6. Teori / Pendekatan Kaunseling</label>
+                    <div class="value" id="resTheory">-</div>
                 </div>
             </div>
-        </div>
-    </section>
+
+            <!-- BAHAGIAN 2: LAPORAN RASMI -->
+            <div class="output-header" style="border-bottom: none; margin-bottom: 0.5rem; padding-bottom: 0;">
+                <h3><i class="fa-solid fa-file-lines"></i> BAHAGIAN 2: DOKUMENTASI RASMI GBK</h3>
+            </div>
+
+            <div class="official-report">
+                <div class="report-section-title">1. Perkara</div>
+                <div class="report-content-box" id="repPerkara">...</div>
+
+                <div class="report-section-title">2. Persoalan</div>
+                <div class="report-content-box" id="repPersoalan">...</div>
+
+                <div class="report-section-title">3. Intervensi GBK</div>
+                <div class="report-content-box" id="repIntervensi">...</div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-sm">
-                    RR
-                </div>
-                <span class="text-white font-bold tracking-tight">e-Laporan GBK</span>
-            </div>
-            <p class="text-sm text-slate-500 text-center">
-                &copy; 2026 e-Laporan GBK (INNOVATION FORWARD TOGETHER). Hak cipta terpelihara.
-            </p>
-            <div class="flex items-center space-x-6 text-sm">
-                <span class="text-brand-500 font-medium">Malaysia School Guidance & Counselling</span>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2026 e-Laporan GBK &bull; Sistem Sokongan AI Pintar Guru Bimbingan dan Kaunseling Malaysia.</p>
     </footer>
 
-    <!-- JavaScript for Lucide & AI Simulation -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+    <!-- Toast Notification -->
+    <div class="toast" id="toastNotification">
+        <i class="fa-solid fa-circle-check"></i> Laporan berjaya disalin ke papan klip!
+    </div>
 
-        function loadExample() {
-            document.getElementById('issueInput').value = "Murid Tahun 4 sering ponteng kerana tidak mendapat perhatian ibu bapa.";
-            document.getElementById('issueInput').focus();
+    <!-- JavaScript Core Logic -->
+    <script>
+        function scrollToInput() {
+            document.getElementById('generator-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        const preloadedDatabase = [
-            {
-                keywords: ["ponteng", "hadir", "sekolah"],
-                pendekatan: "Pemulihan",
-                fokus: "Peningkatan Disiplin Murid",
-                subFokus: "Ponteng Sekolah",
-                teori: "Reality Therapy (CTRT)",
-                perkara: "GBK menjalankan sesi kaunseling individu terhadap murid yang didapati sering tidak hadir ke sekolah tanpa sebab munasabah berikutan kurang perhatian keluarga. Murid menyatakan rasa terabai di rumah dan mencari perhatian di luar.",
-                persoalan: "Apakah perkara yang menyebabkan kamu memilih untuk tidak hadir ke sekolah dan bagaimana ia membantu kamu mendapatkan perhatian?",
-                intervensi: "GBK menggunakan Teori Pilihan (Reality Therapy) dengan membantu murid mengenal pasti tingkah laku semasa, menilai kesan tindakan ponteng terhadap masa depan akademik, serta membimbing murid merancang pelan tindakan yang lebih bertanggungjawab."
-            },
-            {
-                keywords: ["stress", "tekanan", "peperiksaan", "cemas"],
-                pendekatan: "Krisis",
-                fokus: "Psikososial & Kesejahteraan Mental Murid",
-                subFokus: "Pengurusan Stres & Kebimbangan",
-                teori: "Cognitive Behavioral Therapy (CBT)",
-                perkara: "GBK mengendalikan sesi intervensi krisis bagi murid yang mengalami tekanan emosi melampau menjelang peperiksaan besar akibat jangkaan tinggi ibu bapa.",
-                persoalan: "Apakah fikiran negatif utama yang sering bermain di fikiran kamu setiap kali memikirkan keputusan peperiksaan?",
-                intervensi: "GBK menggunakan pendekatan CBT (Cognitive Behavioral Therapy) untuk membantu murid mencabar pemikiran tidak rasional, mengenal pasti corak kognitif negatif, serta melatih teknik relaksasi pernafasan."
-            },
-            {
-                keywords: ["kerjaya", "haluan", "cita-cita", "pilihan"],
-                pendekatan: "Perkembangan",
-                fokus: "Pendidikan Kerjaya Murid",
-                subFokus: "Pemilihan Aliran & Hala Tuju Selepas SPM",
-                teori: "Solution Focused Brief Therapy (SFBT)",
-                perkara: "GBK membimbing murid Tingkatan 5 meneroka pilihan kerjaya yang selari dengan minat, kemahiran serta keputusan peperiksaan percubaan mereka.",
-                persoalan: "Jika masalah kekeliruan kerjaya ini selesai sepenuhnya esok, apakah langkah pertama yang akan kamu ambil?",
-                intervensi: "GBK menggunakan pendekatan Solution Focused (SFBT) dengan memfokuskan kepada kekuatan sedia ada murid, membina matlamat kerjaya yang jelas melalui teknik 'miracle question'."
-            },
-            {
-                keywords: ["buli", "ugut", "kawan", "geng"],
-                pendekatan: "Pencegahan",
-                fokus: "Pembangunan & Perkembangan Sahsiah Diri Murid",
-                subFokus: "Interpersonal & Hubungan Rakan Sebaya",
-                teori: "Person Centered Therapy",
-                perkara: "GBK mengadakan sesi kaunseling sokongan kepada murid yang terlibat dalam isu perselisihan faham dan konflik kecil dengan rakan sebaya di asrama.",
-                persoalan: "Bagaimanakah perasaan kamu ketika berhadapan dengan situasi perselisihan faham tersebut bersama rakan-rakan?",
-                intervensi: "GBK menerapkan Teori Pemusatan Perorangan (Person Centered Therapy) dengan menyediakan suasana yang selamat, empati tinggi, penerimaan tanpa syarat (unconditional positive regard) bagi membolehkan murid meluahkan perasaan."
+        function loadExample(type) {
+            const textarea = document.getElementById('userInput');
+            if(type === 1) {
+                textarea.value = "Murid Tahun 5 bergaduh dan bertengkar kerana salah faham dengan rakan sekelas di padang sekolah.";
+            } else if(type === 2) {
+                textarea.value = "Bimbingan kelas Tahun 1 tentang peraturan kelas dan sekolah, siapa perlu patuhi dan kenapa perlu patuhi.";
+            } else if(type === 3) {
+                textarea.value = "Konsultansi bersama ibu bapa murid Tingkatan 4 mengenai hala tuju kerjaya dan pemilihan aliran akademik.";
             }
-        ];
+            scrollToInput();
+        }
 
-        function generateReport() {
-            const inputVal = document.getElementById('issueInput').value.trim();
-            if (!inputVal) {
-                alert('Sila masukkan isu murid terlebih dahulu.');
-                document.getElementById('issueInput').focus();
+        function processAIAnalysis() {
+            const inputVal = document.getElementById('userInput').value.trim();
+            if(!inputVal) {
+                alert("Sila masukkan situasi, aktiviti atau isu murid terlebih dahulu.");
+                document.getElementById('userInput').focus();
                 return;
             }
 
-            // Show loading
-            document.getElementById('loadingState').classList.remove('hidden');
-            document.getElementById('outputContainer').classList.add('hidden');
+            // Hide output, show loader
+            document.getElementById('outputSection').style.display = 'none';
+            document.getElementById('loadingState').style.display = 'block';
 
             setTimeout(() => {
-                // Match keyword or pick default/first
-                let matched = preloadedDatabase[0];
-                const lower = inputVal.toLowerCase();
+                generateIntelligenceResult(inputVal);
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('outputSection').style.display = 'block';
+                document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
+        }
+
+        function generateIntelligenceResult(text) {
+            const lower = text.toLowerCase();
+            
+            let serviceType = "";
+            let title = "";
+            let approach = "";
+            let mainFocus = "";
+            let subFocus = "";
+            let secondaryFocus = "";
+            let theory = "";
+            let perkaraText = "";
+            let persoalanText = "";
+            let intervensiText = "";
+
+            // Classification Logic
+            if (lower.includes("bimbingan kelas") || lower.includes("tahun 1") || lower.includes("tahun 2") || lower.includes("tahun 3") || lower.includes("tingkatan") && lower.includes("tentang") && !lower.includes("bergaduh") && !lower.includes("masalah")) {
+                serviceType = "Bimbingan Kelas";
+                title = "Peraturan Kelas dan Sekolah serta Kepentingan Kepatuhan Disiplin";
+                approach = "Pencegahan";
+                mainFocus = "Peningkatan Disiplin Murid";
+                subFocus = "Tidak beramanah / Pematuhan Peraturan";
+                secondaryFocus = "Jati Diri / Peningkatan Disiplin Murid";
+                theory = "Pendekatan Bimbingan Kelompok & Penerangan Nilai Murni";
                 
-                for (let item of preloadedDatabase) {
-                    if (item.keywords.some(kw => lower.includes(kw))) {
-                        matched = item;
-                        break;
-                    }
-                }
+                perkaraText = "GBK melaksanakan sesi bimbingan kelas kepada murid berkaitan kesedaran mematuhi peraturan sekolah bagi memastikan iklim bilik darjah yang kondusif dan harmoni.";
+                persoalanText = "Apakah kesan sekiranya kita tidak mematuhi peraturan sekolah dan bagaimana ia mempengaruhi kejayaan diri?";
+                intervensiText = "GBK menjalankan intervensi melalui sesi penerangan berfokus, perbincangan interaktif dua hala bersama murid, aktiviti refleksi kendiri, serta pengukuhan nilai positif mengenai disiplin diri.";
 
-                // If specific keywords matched or customized fallback based on input
-                document.getElementById('resPendekatan').innerText = matched.pendekatan;
-                document.getElementById('resFokus').innerText = matched.fokus;
-                document.getElementById('resSubFokus').innerText = matched.subFokus;
-                document.getElementById('resTeori').innerText = matched.teori;
+            } else if (lower.includes("konsultansi") || lower.includes("ibu bapa") || lower.includes("waris") || lower.includes("pengetua") || lower.includes("guru besar")) {
+                serviceType = "Konsultansi";
+                title = "Konsultansi Kerjaya dan Perkembangan Sahsiah Bersama Waris";
+                approach = "Perkembangan";
+                mainFocus = "Pendidikan Kerjaya Murid";
+                subFocus = "Hala tuju kerjaya & Pemilihan bidang";
+                secondaryFocus = "Komunikasi & Sokongan Keluarga";
+                theory = "Pendekatan Konsultansi Ibu Bapa & Kolaborasi Rangkaian Sokongan";
 
-                document.getElementById('resPerkara').innerText = `"${matched.perkara}"`;
-                document.getElementById('resPersoalan').innerText = `"${matched.persoalan}"`;
-                document.getElementById('resIntervensi').innerText = `"${matched.intervensi}"`;
+                perkaraText = "GBK menjalankan sesi konsultansi bersama waris dan pihak berkepentingan bagi membincangkan perancangan hala tuju serta perkembangan potensi murid secara menyeluruh.";
+                persoalanText = "Bagaimanakah ibu bapa dan pihak sekolah boleh bekerjasama dalam memastikan kejayaan masa depan murid?";
+                intervensiText = "GBK memberikan penerangan terperinci, mengadakan sesi perbincangan terbuka, merangka pelan tindakan bersama, serta memberi penekanan kepada sokongan moral di rumah.";
 
-                // Hide loading, show output
-                document.getElementById('loadingState').classList.add('hidden');
-                document.getElementById('outputContainer').classList.remove('hidden');
+            } else if (lower.includes("kelompok") && !lower.includes("bimbingan")) {
+                serviceType = "Kaunseling Kelompok";
+                title = "Pengurusan Konflik Interpersonal dan Pengawalan Emosi Rakan Sebaya";
+                approach = "Pemulihan";
+                mainFocus = "Psikososial & Kesejahteraan Mental Murid";
+                subFocus = "Pengurusan emosi & Komunikasi berkesan";
+                secondaryFocus = "Peningkatan Disiplin Murid";
+                theory = "Reality Therapy / CTRT";
 
-                // Smooth scroll to output
-                document.getElementById('outputContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 1200);
+                perkaraText = "GBK menjalankan sesi kaunseling kelompok terhadap sekumpulan murid bagi membantu mereka menangani konflik dan membina kemahiran komunikasi yang sihat.";
+                persoalanText = "Apakah cara terbaik yang boleh kamu lakukan untuk mengawal emosi ketika berhadapan dengan provokasi rakan?";
+                intervensiText = "GBK menggunakan kerangka Reality Therapy / CTRT di mana ahli kelompok membincangkan tingkah laku semasa, menilai kesan tindakan mereka, serta melatih kemahiran penyelesaian konflik secara konstruktif.";
+
+            } else if (lower.includes("program") || lower.includes("aktiviti") || lower.includes("kem") || lower.includes("ceramah")) {
+                serviceType = "Program / Aktiviti GBK";
+                title = "Program Pemantapan Sahsiah dan Jati Diri Murid";
+                approach = "Perkembangan";
+                mainFocus = "Pembangunan & Perkembangan Sahsiah Diri Murid";
+                subFocus = "Jati diri & Pengurusan emosi";
+                secondaryFocus = "Peningkatan Disiplin Murid";
+                theory = "Pendekatan Bimbingan dan Motivasi Kelompok";
+
+                perkaraText = "GBK mengelolakan program pembangunan sahsiah bagi memupuk nilai jati diri yang tinggi serta memperkasakan ketahanan mental murid.";
+                persoalanText = "Bagaimanakah kita dapat membina keyakinan diri yang kukuh dalam menghadapi cabaran harian?";
+                intervensiText = "GBK melaksanakan intervensi melalui modul penerangan terancang, perbincangan kumpulan kecil, aktiviti interaktif, sesi refleksi minda, dan pengukuhan nilai positif.";
+
+            } else if (lower.includes("bimbingan kelompok")) {
+                serviceType = "Bimbingan Kelompok";
+                title = "Bimbingan Kemahiran Belajar dan Pengurusan Masa Berkesan";
+                approach = "Perkembangan";
+                mainFocus = "Pembangunan & Perkembangan Sahsiah Diri Murid";
+                subFocus = "Kemahiran belajar";
+                secondaryFocus = "Pengurusan Masa";
+                theory = "Pendekatan Bimbingan Kelompok Berstruktur";
+
+                perkaraText = "GBK melaksanakan sesi bimbingan kelompok kepada murid untuk membincangkan strategi kemahiran belajar yang sistematik dan pengurusan masa yang efektif.";
+                persoalanText = "Apakah jadual harian yang paling berkesan untuk membantu kamu mengulang kaji pelajaran dengan teratur?";
+                intervensiText = "GBK memandu sesi melalui penerangan kaedah belajar, perbincangan teknik ulangkaji, aktiviti interaktif membina jadual, refleksi kendiri, dan pengukuhan amalan belajar berkesan.";
+
+            } else {
+                // Default Individual Counselling (e.g. bergaduh, masalah diri, emosi)
+                serviceType = "Kaunseling Individu";
+                title = "Pengurusan Emosi dan Resolusi Konflik Kendiri Murid";
+                approach = "Pemulihan";
+                mainFocus = "Psikososial & Kesejahteraan Mental Murid";
+                subFocus = "Pengurusan emosi & Komunikasi";
+                secondaryFocus = "Peningkatan Disiplin Murid";
+                theory = "CBT (Cognitive Behavioral Therapy)";
+
+                perkaraText = "GBK menjalankan sesi kaunseling individu terhadap murid bagi membantu mengenalpasti punca konflik, menguruskan emosi negatif, dan mencari alternatif penyelesaian yang positif.";
+                persoalanText = "Apakah cara yang boleh kamu lakukan untuk mengawal emosi dan mengelakkan diri daripada bertindak terburu-buru?";
+                intervensiText = "GBK menggunakan pendekatan teori CBT (Cognitive Behavioral Therapy) untuk membantu murid mengenal pasti corak pemikiran negatif, mencabar kognisi tersebut, serta membimbing murid merangka pelan tindakan tingkah laku yang lebih adaptif.";
+            }
+
+            // Render to DOM
+            document.getElementById('resServiceType').innerText = serviceType;
+            document.getElementById('resTitle').innerText = title;
+            document.getElementById('resApproach').innerText = approach;
+            document.getElementById('resFocus').innerText = mainFocus;
+            document.getElementById('resSubFocus').innerText = "Sub Fokus: " + subFocus;
+            document.getElementById('resSecondaryFocus').innerText = secondaryFocus;
+            document.getElementById('resTheory').innerText = theory;
+
+            document.getElementById('repPerkara').innerText = perkaraText;
+            document.getElementById('repPersoalan').innerText = persoalanText;
+            document.getElementById('repIntervensi').innerText = intervensiText;
         }
 
         function copyReport() {
-            const perkara = document.getElementById('resPerkara').innerText;
-            const persoalan = document.getElementById('resPersoalan').innerText;
-            const intervensi = document.getElementById('resIntervensi').innerText;
-            const pendekatan = document.getElementById('resPendekatan').innerText;
-            const fokus = document.getElementById('resFokus').innerText;
-            const subFokus = document.getElementById('resSubFokus').innerText;
-            const teori = document.getElementById('resTeori').innerText;
+            const service = document.getElementById('resServiceType').innerText;
+            const title = document.getElementById('resTitle').innerText;
+            const approach = document.getElementById('resApproach').innerText;
+            const focus = document.getElementById('resFocus').innerText;
+            const subFocus = document.getElementById('resSubFocus').innerText;
+            const secFocus = document.getElementById('resSecondaryFocus').innerText;
+            const theory = document.getElementById('resTheory').innerText;
+            
+            const perkara = document.getElementById('repPerkara').innerText;
+            const persoalan = document.getElementById('repPersoalan').innerText;
+            const intervensi = document.getElementById('repIntervensi').innerText;
 
-            const textToCopy = `ANALISIS AI e-LAPORAN GBK:
-Pendekatan: ${pendekatan}
-Fokus Utama: ${fokus}
-Sub Fokus: ${subFokus}
-Teori Kaunseling: ${teori}
+            const fullText = `=== DOKUMENTASI E-LAPORAN GBK ===\n\nBAHAGIAN 1: ANALISIS AI\n1. Jenis Perkhidmatan: ${service}\n2. Tajuk / Aktiviti: ${title}\n3. Pendekatan: ${approach}\n4. Fokus Utama: ${focus} (${subFocus})\n5. Fokus Sampingan: ${secFocus}\n6. Teori / Pendekatan Kaunseling: ${theory}\n\nBAHAGIAN 2: LAPORAN RASMI\n1. PERKARA\n${perkara}\n\n2. PERSOALAN\n${persoalan}\n\n3. INTERVENSI GBK\n${intervensi}`;
 
-A. PERKARA
-${perkara}
-
-B. PERSOALAN
-${persoalan}
-
-C. INTERVENSI GBK
-${intervensi}`;
-
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const btnText = document.getElementById('copyTextBtn');
-                btnText.innerText = 'Berjaya Disalin!';
-                setTimeout(() => {
-                    btnText.innerText = 'Salin Laporan';
-                }, 2000);
+            navigator.clipboard.writeText(fullText).then(() => {
+                showToast();
+            }).catch(err => {
+                alert("Gagal menyalin teks.");
             });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toastNotification');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
     </script>
 </body>
