@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Laporan GBK | AI Pintar Pembantu Guru Bimbingan dan Kaunseling</title>
+    <title>e-Laporan GBK | Sistem AI Rasmi Guru Bimbingan dan Kaunseling Malaysia</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -43,74 +43,64 @@
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
             color: white;
-            padding: 5rem 1rem 4rem;
+            padding: 4rem 1rem 3.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 20%, rgba(79, 70, 229, 0.2) 0%, transparent 60%);
-            pointer-events: none;
         }
 
         .logo-container {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .logo-badge {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 16px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: white;
             box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
-            margin-bottom: 0.75rem;
-            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
         }
 
         .logo-text-innovation {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             color: var(--accent);
             text-transform: uppercase;
         }
 
         .logo-text-forward {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
             text-transform: uppercase;
             margin-top: 2px;
         }
 
         .hero h1 {
-            font-size: 2.75rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
             background: linear-gradient(to right, #ffffff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.15rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto 1.75rem;
             color: #cbd5e1;
             font-weight: 300;
         }
@@ -119,8 +109,8 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.875rem 2rem;
-            font-size: 1rem;
+            padding: 0.75rem 1.75rem;
+            font-size: 0.95rem;
             font-weight: 600;
             border-radius: var(--radius);
             cursor: pointer;
@@ -134,14 +124,13 @@
         .cta-btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
         }
 
-        /* Main App Container */
+        /* Container & Cards */
         .container {
-            max-width: 900px;
-            margin: -2.5rem auto 4rem;
-            padding: 0 1.5rem;
+            max-width: 850px;
+            margin: -2rem auto 3rem;
+            padding: 0 1rem;
             position: relative;
             z-index: 10;
         }
@@ -151,42 +140,36 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: var(--transition);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
         }
 
         .input-section h2 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-main);
+            margin-bottom: 0.85rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: var(--text-main);
         }
 
         .input-section h2 i {
             color: var(--primary);
         }
 
-        .textarea-wrapper {
-            position: relative;
-            margin-bottom: 1.25rem;
-        }
-
         textarea {
             width: 100%;
-            min-height: 130px;
+            min-height: 120px;
             padding: 1rem;
             border: 2px solid var(--border);
             border-radius: var(--radius);
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-main);
             resize: vertical;
-            transition: var(--transition);
             outline: none;
+            transition: var(--transition);
             background-color: #fafafa;
         }
 
@@ -202,10 +185,11 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .suggestions-hint {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
         }
 
@@ -216,16 +200,16 @@
             text-decoration: underline;
         }
 
-        /* Loading State */
+        /* Loading Animation */
         .loading-state {
             display: none;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2.5rem 1rem;
         }
 
         .spinner {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border: 4px solid var(--primary-light);
             border-top: 4px solid var(--primary);
             border-radius: 50%;
@@ -239,24 +223,19 @@
         }
 
         .loading-text {
+            font-size: 0.9rem;
             font-weight: 500;
             color: var(--text-muted);
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
         }
 
         /* Output Section */
         .output-section {
             display: none;
-            animation: fadeIn 0.5s ease-out forwards;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -265,12 +244,12 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--border);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
+            padding-bottom: 0.85rem;
+            margin-bottom: 1.25rem;
         }
 
         .output-header h3 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--primary-dark);
             display: flex;
@@ -287,15 +266,15 @@
             background-color: var(--primary-light);
             color: var(--primary);
             border: none;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
         }
 
         .btn-secondary:hover {
@@ -303,104 +282,76 @@
             color: white;
         }
 
-        /* Report Elements Grid / Structure */
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 2rem;
+        .sequence-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .analysis-box {
-            background: var(--bg-main);
+        .sequence-item {
+            background: #f8fafc;
             border: 1px solid var(--border);
-            padding: 1.25rem;
-            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
         }
 
-        .analysis-box label {
+        .sequence-label {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             font-weight: 700;
             color: var(--text-muted);
-            display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
-        .analysis-box .value {
-            font-size: 1rem;
+        .sequence-value {
+            font-size: 0.98rem;
             font-weight: 600;
             color: var(--text-main);
         }
 
-        .sub-value {
-            font-size: 0.85rem;
-            color: var(--primary);
-            margin-top: 0.2rem;
-            font-weight: 500;
-        }
-
-        /* Final Official Documentation Report Style */
-        .official-report {
+        .sequence-value.paragraph {
+            font-weight: 400;
+            line-height: 1.6;
             background: #ffffff;
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-        }
-
-        .report-section-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-            margin-top: 1.25rem;
-        }
-
-        .report-section-title:first-child {
-            margin-top: 0;
-        }
-
-        .report-content-box {
-            font-size: 1.05rem;
-            color: var(--text-main);
-            background: #fdfdfd;
-            padding: 1rem;
+            padding: 0.75rem;
             border-radius: 6px;
             border: 1px dashed var(--border);
+            margin-top: 0.3rem;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border-top: 1px solid var(--border);
             background: var(--surface);
         }
 
-        /* Toast notification */
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
             right: 20px;
             background: #10b981;
             color: white;
-            padding: 0.75rem 1.25rem;
+            padding: 0.6rem 1.1rem;
             border-radius: 8px;
+            font-size: 0.85rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             z-index: 1000;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
             transition: all 0.3s ease;
             pointer-events: none;
         }
@@ -434,89 +385,46 @@
         </button>
     </header>
 
-    <!-- MAIN APP INTERFACE -->
+    <!-- MAIN APP CONTAINER -->
     <main class="container">
         
-        <!-- Input Card -->
+        <!-- Input Section -->
         <section class="card input-section" id="generator-section">
             <h2><i class="fa-solid fa-pen-nib"></i> Masukkan Situasi, Aktiviti atau Isu Murid</h2>
-            <div class="textarea-wrapper">
-                <textarea id="userInput" placeholder="Contoh: Murid Tahun 5 bergaduh kerana salah faham dengan rakan, atau bimbingan kelas tentang peraturan sekolah."></textarea>
-            </div>
+            <textarea id="userInput" placeholder="Contoh: Bimbingan kelas Tahun 1 tentang peraturan kelas dan sekolah, siapa perlu patuhi dan kenapa perlu patuhi."></textarea>
             
             <div class="action-row">
                 <div class="suggestions-hint">
-                    Cuba contoh cepat: <span onclick="loadExample(1)">Bergaduh rakan</span> | <span onclick="loadExample(2)">Peraturan kelas</span> | <span onclick="loadExample(3)">Hala tuju kerjaya</span>
+                    Contoh pantas: <span onclick="loadExample(1)">Bimbingan Kelas</span> | <span onclick="loadExample(2)">Kaunseling Individu</span> | <span onclick="loadExample(3)">Konsultansi</span>
                 </div>
-                <button class="cta-btn" id="generateBtn" onclick="processAIAnalysis()">
+                <button class="cta-btn" onclick="processAIAnalysis()">
                     <i class="fa-solid fa-bolt"></i> Jana Analisis & Laporan
                 </button>
             </div>
         </section>
 
-        <!-- Loading State Card -->
+        <!-- Loading State -->
         <section class="card loading-state" id="loadingState">
             <div class="spinner"></div>
-            <div class="loading-text">AI sedang menganalisis jenis perkhidmatan dan memproses dokumentasi GBK...</div>
+            <div class="loading-text">AI sedang menganalisis jenis perkhidmatan dan menyusun format laporan bersasar...</div>
         </section>
 
-        <!-- AI Analysis & Report Output Card -->
+        <!-- Output Section with Dynamic Formatting -->
         <section class="card output-section" id="outputSection">
             <div class="output-header">
-                <h3><i class="fa-solid fa-robot"></i> BAHAGIAN 1: ANALISIS AI</h3>
+                <h3><i class="fa-solid fa-robot"></i> Hasil Analisis & Laporan Rasmi GBK</h3>
                 <div class="output-actions">
                     <button class="btn-secondary" onclick="copyReport()">
-                        <i class="fa-regular fa-copy"></i> Salin Laporan
+                        <i class="fa-regular fa-copy"></i> Salin Semua
                     </button>
                     <button class="btn-secondary" onclick="window.print()">
-                        <i class="fa-solid fa-print"></i> Cetak / Eksport
+                        <i class="fa-solid fa-print"></i> Cetak
                     </button>
                 </div>
             </div>
 
-            <!-- Structured Analysis Grid -->
-            <div class="analysis-grid">
-                <div class="analysis-box">
-                    <label>1. Jenis Perkhidmatan</label>
-                    <div class="value" id="resServiceType">-</div>
-                </div>
-                <div class="analysis-box">
-                    <label>2. Tajuk / Aktiviti</label>
-                    <div class="value" id="resTitle">-</div>
-                </div>
-                <div class="analysis-box">
-                    <label>3. Pendekatan</label>
-                    <div class="value" id="resApproach">-</div>
-                </div>
-                <div class="analysis-box">
-                    <label>4. Fokus Utama & Sub Fokus</label>
-                    <div class="value" id="resFocus">-</div>
-                    <div class="sub-value" id="resSubFocus">-</div>
-                </div>
-                <div class="analysis-box">
-                    <label>5. Fokus Sampingan</label>
-                    <div class="value" id="resSecondaryFocus">-</div>
-                </div>
-                <div class="analysis-box">
-                    <label>6. Teori / Pendekatan Kaunseling</label>
-                    <div class="value" id="resTheory">-</div>
-                </div>
-            </div>
-
-            <!-- BAHAGIAN 2: LAPORAN RASMI -->
-            <div class="output-header" style="border-bottom: none; margin-bottom: 0.5rem; padding-bottom: 0;">
-                <h3><i class="fa-solid fa-file-lines"></i> BAHAGIAN 2: DOKUMENTASI RASMI GBK</h3>
-            </div>
-
-            <div class="official-report">
-                <div class="report-section-title">1. Perkara</div>
-                <div class="report-content-box" id="repPerkara">...</div>
-
-                <div class="report-section-title">2. Persoalan</div>
-                <div class="report-content-box" id="repPersoalan">...</div>
-
-                <div class="report-section-title">3. Intervensi GBK</div>
-                <div class="report-content-box" id="repIntervensi">...</div>
+            <div class="sequence-container" id="dynamicOutputContainer">
+                <!-- Dynamically populated based on Service Type format rules -->
             </div>
         </section>
 
@@ -529,11 +437,13 @@
 
     <!-- Toast Notification -->
     <div class="toast" id="toastNotification">
-        <i class="fa-solid fa-circle-check"></i> Laporan berjaya disalin ke papan klip!
+        <i class="fa-solid fa-circle-check"></i> Laporan rasmi berjaya disalin!
     </div>
 
-    <!-- JavaScript Core Logic -->
+    <!-- JavaScript Intelligence Logic with Strict Formatting Rules -->
     <script>
+        let currentReportText = "";
+
         function scrollToInput() {
             document.getElementById('generator-section').scrollIntoView({ behavior: 'smooth' });
         }
@@ -541,11 +451,11 @@
         function loadExample(type) {
             const textarea = document.getElementById('userInput');
             if(type === 1) {
-                textarea.value = "Murid Tahun 5 bergaduh dan bertengkar kerana salah faham dengan rakan sekelas di padang sekolah.";
-            } else if(type === 2) {
                 textarea.value = "Bimbingan kelas Tahun 1 tentang peraturan kelas dan sekolah, siapa perlu patuhi dan kenapa perlu patuhi.";
+            } else if(type === 2) {
+                textarea.value = "Murid Tahun 5 stres akibat masalah keluarga dan kesukaran mengawal emosi diri.";
             } else if(type === 3) {
-                textarea.value = "Konsultansi bersama ibu bapa murid Tingkatan 4 mengenai hala tuju kerjaya dan pemilihan aliran akademik.";
+                textarea.value = "Konsultansi bersama waris mengenai perancangan hala tuju kerjaya murid Tingkatan 5.";
             }
             scrollToInput();
         }
@@ -558,155 +468,160 @@
                 return;
             }
 
-            // Hide output, show loader
             document.getElementById('outputSection').style.display = 'none';
             document.getElementById('loadingState').style.display = 'block';
 
             setTimeout(() => {
-                generateIntelligenceResult(inputVal);
+                generateDynamicReport(inputVal);
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('outputSection').style.display = 'block';
                 document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
-            }, 1000);
+            }, 800);
         }
 
-        function generateIntelligenceResult(text) {
+        function generateDynamicReport(text) {
             const lower = text.toLowerCase();
-            
+            const container = document.getElementById('dynamicOutputContainer');
+            container.innerHTML = "";
+
             let serviceType = "";
-            let title = "";
-            let approach = "";
-            let mainFocus = "";
-            let subFocus = "";
-            let secondaryFocus = "";
-            let theory = "";
-            let perkaraText = "";
-            let persoalanText = "";
-            let intervensiText = "";
+            let dataFields = [];
 
-            // Classification Logic
-            if (lower.includes("bimbingan kelas") || lower.includes("tahun 1") || lower.includes("tahun 2") || lower.includes("tahun 3") || lower.includes("tingkatan") && lower.includes("tentang") && !lower.includes("bergaduh") && !lower.includes("masalah")) {
+            // 1. Identify Service Type First
+            if (lower.includes("bimbingan kelas") || lower.includes("peraturan kelas") || (lower.includes("tahun 1") && lower.includes("tentang"))) {
                 serviceType = "Bimbingan Kelas";
-                title = "Peraturan Kelas dan Sekolah serta Kepentingan Kepatuhan Disiplin";
-                approach = "Pencegahan";
-                mainFocus = "Peningkatan Disiplin Murid";
-                subFocus = "Tidak beramanah / Pematuhan Peraturan";
-                secondaryFocus = "Jati Diri / Peningkatan Disiplin Murid";
-                theory = "Pendekatan Bimbingan Kelompok & Penerangan Nilai Murni";
-                
-                perkaraText = "GBK melaksanakan sesi bimbingan kelas kepada murid berkaitan kesedaran mematuhi peraturan sekolah bagi memastikan iklim bilik darjah yang kondusif dan harmoni.";
-                persoalanText = "Apakah kesan sekiranya kita tidak mematuhi peraturan sekolah dan bagaimana ia mempengaruhi kejayaan diri?";
-                intervensiText = "GBK menjalankan intervensi melalui sesi penerangan berfokus, perbincangan interaktif dua hala bersama murid, aktiviti refleksi kendiri, serta pengukuhan nilai positif mengenai disiplin diri.";
+                let tajuk = "Peraturan Kelas dan Sekolah";
+                let pendekatan = "Pencegahan";
+                let fokusUtama = "Pembangunan & Perkembangan Sahsiah Diri Murid";
+                let perkara = "GBK melaksanakan sesi bimbingan kelas kepada murid Tahun 1 berkaitan peraturan kelas dan sekolah. Murid diberi penerangan tentang kepentingan mematuhi peraturan, tanggungjawab sebagai murid serta kesan positif terhadap diri dan persekitaran sekolah.";
+                let persoalan = "Mengapakah kita perlu mematuhi peraturan kelas dan sekolah?";
+                let intervensi = "GBK memberikan penerangan, soal jawab dan aktiviti interaktif bagi meningkatkan kesedaran murid tentang kepentingan disiplin serta pematuhan peraturan.";
 
-            } else if (lower.includes("konsultansi") || lower.includes("ibu bapa") || lower.includes("waris") || lower.includes("pengetua") || lower.includes("guru besar")) {
+                dataFields = [
+                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
+                    { label: "2. Tajuk / Aktiviti", value: tajuk, isPara: false },
+                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
+                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
+                    { label: "5. Perkara", value: perkara, isPara: true },
+                    { label: "6. Persoalan", value: persoalan, isPara: true },
+                    { label: "7. Intervensi GBK", value: intervensi, isPara: true }
+                ];
+
+            } else if (lower.includes("konsultansi") || lower.includes("ibu bapa") || lower.includes("waris")) {
                 serviceType = "Konsultansi";
-                title = "Konsultansi Kerjaya dan Perkembangan Sahsiah Bersama Waris";
-                approach = "Perkembangan";
-                mainFocus = "Pendidikan Kerjaya Murid";
-                subFocus = "Hala tuju kerjaya & Pemilihan bidang";
-                secondaryFocus = "Komunikasi & Sokongan Keluarga";
-                theory = "Pendekatan Konsultansi Ibu Bapa & Kolaborasi Rangkaian Sokongan";
+                let tajuk = "Konsultansi Bersama Waris Mengenai Hala Tuju Kerjaya Murid";
+                let pendekatan = "Perkembangan";
+                let fokusUtama = "Pendidikan Kerjaya Murid";
+                let perkara = "GBK menjalankan sesi konsultansi bersama waris bagi membincangkan perancangan hala tuju serta perkembangan potensi akademik dan kerjaya murid secara kolaboratif.";
+                let persoalan = "Bagaimanakah ibu bapa dan pihak sekolah boleh bekerjasama dalam memastikan kejayaan masa depan murid?";
+                let intervensi = "GBK memberikan khidmat nasihat, penerangan terperinci, sesi soal jawab terbuka, serta perbincangan strategik bersama waris untuk menyokong perkembangan murid.";
 
-                perkaraText = "GBK menjalankan sesi konsultansi bersama waris dan pihak berkepentingan bagi membincangkan perancangan hala tuju serta perkembangan potensi murid secara menyeluruh.";
-                persoalanText = "Bagaimanakah ibu bapa dan pihak sekolah boleh bekerjasama dalam memastikan kejayaan masa depan murid?";
-                intervensiText = "GBK memberikan penerangan terperinci, mengadakan sesi perbincangan terbuka, merangka pelan tindakan bersama, serta memberi penekanan kepada sokongan moral di rumah.";
-
-            } else if (lower.includes("kelompok") && !lower.includes("bimbingan")) {
-                serviceType = "Kaunseling Kelompok";
-                title = "Pengurusan Konflik Interpersonal dan Pengawalan Emosi Rakan Sebaya";
-                approach = "Pemulihan";
-                mainFocus = "Psikososial & Kesejahteraan Mental Murid";
-                subFocus = "Pengurusan emosi & Komunikasi berkesan";
-                secondaryFocus = "Peningkatan Disiplin Murid";
-                theory = "Reality Therapy / CTRT";
-
-                perkaraText = "GBK menjalankan sesi kaunseling kelompok terhadap sekumpulan murid bagi membantu mereka menangani konflik dan membina kemahiran komunikasi yang sihat.";
-                persoalanText = "Apakah cara terbaik yang boleh kamu lakukan untuk mengawal emosi ketika berhadapan dengan provokasi rakan?";
-                intervensiText = "GBK menggunakan kerangka Reality Therapy / CTRT di mana ahli kelompok membincangkan tingkah laku semasa, menilai kesan tindakan mereka, serta melatih kemahiran penyelesaian konflik secara konstruktif.";
-
-            } else if (lower.includes("program") || lower.includes("aktiviti") || lower.includes("kem") || lower.includes("ceramah")) {
-                serviceType = "Program / Aktiviti GBK";
-                title = "Program Pemantapan Sahsiah dan Jati Diri Murid";
-                approach = "Perkembangan";
-                mainFocus = "Pembangunan & Perkembangan Sahsiah Diri Murid";
-                subFocus = "Jati diri & Pengurusan emosi";
-                secondaryFocus = "Peningkatan Disiplin Murid";
-                theory = "Pendekatan Bimbingan dan Motivasi Kelompok";
-
-                perkaraText = "GBK mengelolakan program pembangunan sahsiah bagi memupuk nilai jati diri yang tinggi serta memperkasakan ketahanan mental murid.";
-                persoalanText = "Bagaimanakah kita dapat membina keyakinan diri yang kukuh dalam menghadapi cabaran harian?";
-                intervensiText = "GBK melaksanakan intervensi melalui modul penerangan terancang, perbincangan kumpulan kecil, aktiviti interaktif, sesi refleksi minda, dan pengukuhan nilai positif.";
+                dataFields = [
+                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
+                    { label: "2. Tajuk", value: tajuk, isPara: false },
+                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
+                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
+                    { label: "5. Perkara", value: perkara, isPara: true },
+                    { label: "6. Persoalan", value: persoalan, isPara: true },
+                    { label: "7. Intervensi GBK", value: intervensi, isPara: true }
+                ];
 
             } else if (lower.includes("bimbingan kelompok")) {
                 serviceType = "Bimbingan Kelompok";
-                title = "Bimbingan Kemahiran Belajar dan Pengurusan Masa Berkesan";
-                approach = "Perkembangan";
-                mainFocus = "Pembangunan & Perkembangan Sahsiah Diri Murid";
-                subFocus = "Kemahiran belajar";
-                secondaryFocus = "Pengurusan Masa";
-                theory = "Pendekatan Bimbingan Kelompok Berstruktur";
+                let tajuk = "Bimbingan Kemahiran Belajar dan Pengurusan Masa";
+                let pendekatan = "Perkembangan";
+                let fokusUtama = "Pembangunan & Perkembangan Sahsiah Diri Murid";
+                let perkara = "GBK melaksanakan sesi bimbingan kelompok kepada sekumpulan murid untuk membincangkan strategi kemahiran belajar yang sistematik dan pengurusan masa yang berkesan.";
+                let persoalan = "Apakah jadual harian yang paling berkesan untuk membantu kamu mengulang kaji pelajaran dengan teratur?";
+                let intervensi = "GBK menjalankan bimbingan melalui penerangan kaedah belajar, perbincangan kelompok, sesi soal jawab, serta aktiviti refleksi minda.";
 
-                perkaraText = "GBK melaksanakan sesi bimbingan kelompok kepada murid untuk membincangkan strategi kemahiran belajar yang sistematik dan pengurusan masa yang efektif.";
-                persoalanText = "Apakah jadual harian yang paling berkesan untuk membantu kamu mengulang kaji pelajaran dengan teratur?";
-                intervensiText = "GBK memandu sesi melalui penerangan kaedah belajar, perbincangan teknik ulangkaji, aktiviti interaktif membina jadual, refleksi kendiri, dan pengukuhan amalan belajar berkesan.";
+                dataFields = [
+                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
+                    { label: "2. Tajuk", value: tajuk, isPara: false },
+                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
+                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
+                    { label: "5. Perkara", value: perkara, isPara: true },
+                    { label: "6. Persoalan", value: persoalan, isPara: true },
+                    { label: "7. Intervensi GBK", value: intervensi, isPara: true }
+                ];
+
+            } else if (lower.includes("kaunseling kelompok")) {
+                serviceType = "Kaunseling Kelompok";
+                let tajuk = "Pengurusan Emosi dan Konflik Rakan Sebaya";
+                let pendekatan = "Pemulihan";
+                let fokusUtama = "Psikososial & Kesejahteraan Mental Murid";
+                let fokusSampingan = "Pengurusan Emosi";
+                let teori = "Reality Therapy / CTRT";
+                let perkara = "GBK menjalankan sesi kaunseling kelompok terhadap sekumpulan murid bagi membantu mereka menangani konflik dan membina kemahiran komunikasi yang sihat.";
+                let persoalan = "Apakah cara terbaik yang boleh kamu lakukan untuk mengawal emosi ketika berhadapan dengan provokasi rakan?";
+                let intervensi = "GBK menggunakan teori Reality Therapy / CTRT di mana ahli kelompok membincangkan tingkah laku semasa, menilai kesan tindakan, serta melatih kemahiran menyelesaikan konflik secara membina.";
+
+                dataFields = [
+                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
+                    { label: "2. Tajuk / Isu", value: tajuk, isPara: false },
+                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
+                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
+                    { label: "5. Fokus Sampingan", value: fokusSampingan, isPara: false },
+                    { label: "6. Teori Kaunseling", value: teori, isPara: false },
+                    { label: "7. Perkara", value: perkara, isPara: true },
+                    { label: "8. Persoalan", value: persoalan, isPara: true },
+                    { label: "9. Intervensi GBK", value: intervensi, isPara: true }
+                ];
 
             } else {
-                // Default Individual Counselling (e.g. bergaduh, masalah diri, emosi)
+                // Default: Kaunseling Individu
                 serviceType = "Kaunseling Individu";
-                title = "Pengurusan Emosi dan Resolusi Konflik Kendiri Murid";
-                approach = "Pemulihan";
-                mainFocus = "Psikososial & Kesejahteraan Mental Murid";
-                subFocus = "Pengurusan emosi & Komunikasi";
-                secondaryFocus = "Peningkatan Disiplin Murid";
-                theory = "CBT (Cognitive Behavioral Therapy)";
+                let tajuk = "Pengurusan Emosi dan Stres Kendiri Murid";
+                let pendekatan = "Pemulihan";
+                let fokusUtama = "Psikososial & Kesejahteraan Mental Murid";
+                let fokusSampingan = "Pengurusan Emosi";
+                let teori = "CBT (Cognitive Behavioral Therapy)";
+                let perkara = "GBK menjalankan sesi kaunseling individu terhadap murid bagi membantu mengenal pasti punca stres, menguruskan emosi negatif, dan mencari alternatif penyelesaian tingkah laku yang positif.";
+                let persoalan = "Apakah cara yang boleh kamu lakukan untuk mengawal emosi dan mengatasi tekanan yang dihadapi?";
+                let intervensi = "GBK menggunakan pendekatan teori CBT (Cognitive Behavioral Therapy) bagi membantu murid mengenal pasti corak pemikiran negatif, mencabar kognisi tersebut, serta membimbing murid merangka pelan tindakan tingkah laku yang lebih adaptif.";
 
-                perkaraText = "GBK menjalankan sesi kaunseling individu terhadap murid bagi membantu mengenalpasti punca konflik, menguruskan emosi negatif, dan mencari alternatif penyelesaian yang positif.";
-                persoalanText = "Apakah cara yang boleh kamu lakukan untuk mengawal emosi dan mengelakkan diri daripada bertindak terburu-buru?";
-                intervensiText = "GBK menggunakan pendekatan teori CBT (Cognitive Behavioral Therapy) untuk membantu murid mengenal pasti corak pemikiran negatif, mencabar kognisi tersebut, serta membimbing murid merangka pelan tindakan tingkah laku yang lebih adaptif.";
+                dataFields = [
+                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
+                    { label: "2. Tajuk / Isu", value: tajuk, isPara: false },
+                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
+                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
+                    { label: "5. Fokus Sampingan", value: fokusSampingan, isPara: false },
+                    { label: "6. Teori Kaunseling", value: teori, isPara: false },
+                    { label: "7. Perkara", value: perkara, isPara: true },
+                    { label: "8. Persoalan", value: persoalan, isPara: true },
+                    { label: "9. Intervensi GBK", value: intervensi, isPara: true }
+                ];
             }
 
-            // Render to DOM
-            document.getElementById('resServiceType').innerText = serviceType;
-            document.getElementById('resTitle').innerText = title;
-            document.getElementById('resApproach').innerText = approach;
-            document.getElementById('resFocus').innerText = mainFocus;
-            document.getElementById('resSubFocus').innerText = "Sub Fokus: " + subFocus;
-            document.getElementById('resSecondaryFocus').innerText = secondaryFocus;
-            document.getElementById('resTheory').innerText = theory;
+            // Build DOM and compile text representation
+            currentReportText = "";
+            dataFields.forEach((field, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'sequence-item';
+                
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'sequence-label';
+                labelDiv.innerText = field.label;
+                
+                const valDiv = document.createElement('div');
+                valDiv.className = field.isPara ? 'sequence-value paragraph' : 'sequence-value';
+                valDiv.innerText = field.value;
 
-            document.getElementById('repPerkara').innerText = perkaraText;
-            document.getElementById('repPersoalan').innerText = persoalanText;
-            document.getElementById('repIntervensi').innerText = intervensiText;
-        }
+                itemDiv.appendChild(labelDiv);
+                itemDiv.appendChild(valDiv);
+                container.appendChild(itemDiv);
 
-        function copyReport() {
-            const service = document.getElementById('resServiceType').innerText;
-            const title = document.getElementById('resTitle').innerText;
-            const approach = document.getElementById('resApproach').innerText;
-            const focus = document.getElementById('resFocus').innerText;
-            const subFocus = document.getElementById('resSubFocus').innerText;
-            const secFocus = document.getElementById('resSecondaryFocus').innerText;
-            const theory = document.getElementById('resTheory').innerText;
-            
-            const perkara = document.getElementById('repPerkara').innerText;
-            const persoalan = document.getElementById('repPersoalan').innerText;
-            const intervensi = document.getElementById('repIntervensi').innerText;
-
-            const fullText = `=== DOKUMENTASI E-LAPORAN GBK ===\n\nBAHAGIAN 1: ANALISIS AI\n1. Jenis Perkhidmatan: ${service}\n2. Tajuk / Aktiviti: ${title}\n3. Pendekatan: ${approach}\n4. Fokus Utama: ${focus} (${subFocus})\n5. Fokus Sampingan: ${secFocus}\n6. Teori / Pendekatan Kaunseling: ${theory}\n\nBAHAGIAN 2: LAPORAN RASMI\n1. PERKARA\n${perkara}\n\n2. PERSOALAN\n${persoalan}\n\n3. INTERVENSI GBK\n${intervensi}`;
-
-            navigator.clipboard.writeText(fullText).then(() => {
-                showToast();
-            }).catch(err => {
-                alert("Gagal menyalin teks.");
+                currentReportText += `${field.label}:\n${field.value}\n\n`;
             });
         }
 
-        function showToast() {
-            const toast = document.getElementById('toastNotification');
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        function copyReport() {
+            if(!currentReportText) return;
+            navigator.clipboard.writeText(currentReportText.trim()).then(() => {
+                const toast = document.getElementById('toastNotification');
+                toast.classList.add('show');
+                setTimeout(() => { toast.classList.remove('show'); }, 3000);
+            });
         }
     </script>
 </body>
