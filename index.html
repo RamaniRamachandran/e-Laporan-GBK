@@ -391,11 +391,11 @@
         <!-- Input Section -->
         <section class="card input-section" id="generator-section">
             <h2><i class="fa-solid fa-pen-nib"></i> Masukkan Situasi, Aktiviti atau Isu Murid</h2>
-            <textarea id="userInput" placeholder="Contoh: Bimbingan kelas Tahun 1 tentang peraturan kelas dan sekolah, siapa perlu patuhi dan kenapa perlu patuhi."></textarea>
+            <textarea id="userInput" placeholder="Contoh: Kaunseling individu kepada murid yang mempunyai berat badan berlebihan agar dapat menjaga pemakanan, minuman dan melakukan senaman."></textarea>
             
             <div class="action-row">
                 <div class="suggestions-hint">
-                    Contoh pantas: <span onclick="loadExample(1)">Bimbingan Kelas</span> | <span onclick="loadExample(2)">Kaunseling Individu</span> | <span onclick="loadExample(3)">Konsultansi</span>
+                    Contoh pantas: <span onclick="loadExample(1)">Gaya Hidup Sihat</span> | <span onclick="loadExample(2)">Peraturan Kelas</span> | <span onclick="loadExample(3)">Hala Tuju Kerjaya</span>
                 </div>
                 <button class="cta-btn" onclick="processAIAnalysis()">
                     <i class="fa-solid fa-bolt"></i> Jana Analisis & Laporan
@@ -406,10 +406,10 @@
         <!-- Loading State -->
         <section class="card loading-state" id="loadingState">
             <div class="spinner"></div>
-            <div class="loading-text">AI sedang menganalisis jenis perkhidmatan dan menyusun format laporan bersasar...</div>
+            <div class="loading-text">AI sedang meneliti isu sebenar murid dan menyusun laporan bersasar...</div>
         </section>
 
-        <!-- Output Section with Dynamic Formatting -->
+        <!-- Output Section -->
         <section class="card output-section" id="outputSection">
             <div class="output-header">
                 <h3><i class="fa-solid fa-robot"></i> Hasil Analisis & Laporan Rasmi GBK</h3>
@@ -424,7 +424,7 @@
             </div>
 
             <div class="sequence-container" id="dynamicOutputContainer">
-                <!-- Dynamically populated based on Service Type format rules -->
+                <!-- Dynamically populated based on Service Type and custom content rules -->
             </div>
         </section>
 
@@ -440,7 +440,7 @@
         <i class="fa-solid fa-circle-check"></i> Laporan rasmi berjaya disalin!
     </div>
 
-    <!-- JavaScript Intelligence Logic with Strict Formatting Rules -->
+    <!-- JavaScript Intelligence Logic with Contextual Matching -->
     <script>
         let currentReportText = "";
 
@@ -451,9 +451,9 @@
         function loadExample(type) {
             const textarea = document.getElementById('userInput');
             if(type === 1) {
-                textarea.value = "Bimbingan kelas Tahun 1 tentang peraturan kelas dan sekolah, siapa perlu patuhi dan kenapa perlu patuhi.";
+                textarea.value = "Kaunseling individu kepada murid yang mempunyai berat badan berlebihan agar dapat menjaga pemakanan, minuman dan melakukan senaman.";
             } else if(type === 2) {
-                textarea.value = "Murid Tahun 5 stres akibat masalah keluarga dan kesukaran mengawal emosi diri.";
+                textarea.value = "Bimbingan kelas Tahun 1 tentang peraturan kelas dan sekolah, siapa perlu patuhi dan kenapa perlu patuhi.";
             } else if(type === 3) {
                 textarea.value = "Konsultansi bersama waris mengenai perancangan hala tuju kerjaya murid Tingkatan 5.";
             }
@@ -484,118 +484,71 @@
             const container = document.getElementById('dynamicOutputContainer');
             container.innerHTML = "";
 
-            let serviceType = "";
             let dataFields = [];
 
-            // 1. Identify Service Type First
-            if (lower.includes("bimbingan kelas") || lower.includes("peraturan kelas") || (lower.includes("tahun 1") && lower.includes("tentang"))) {
-                serviceType = "Bimbingan Kelas";
-                let tajuk = "Peraturan Kelas dan Sekolah";
-                let pendekatan = "Pencegahan";
-                let fokusUtama = "Pembangunan & Perkembangan Sahsiah Diri Murid";
-                let perkara = "GBK melaksanakan sesi bimbingan kelas kepada murid Tahun 1 berkaitan peraturan kelas dan sekolah. Murid diberi penerangan tentang kepentingan mematuhi peraturan, tanggungjawab sebagai murid serta kesan positif terhadap diri dan persekitaran sekolah.";
-                let persoalan = "Mengapakah kita perlu mematuhi peraturan kelas dan sekolah?";
-                let intervensi = "GBK memberikan penerangan, soal jawab dan aktiviti interaktif bagi meningkatkan kesedaran murid tentang kepentingan disiplin serta pematuhan peraturan.";
-
+            // Check if context matches weight / healthy lifestyle example
+            if (lower.includes("berat badan") || lower.includes("pemakanan") || lower.includes("senaman") || lower.includes("gaya hidup")) {
                 dataFields = [
-                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
-                    { label: "2. Tajuk / Aktiviti", value: tajuk, isPara: false },
-                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
-                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
-                    { label: "5. Perkara", value: perkara, isPara: true },
-                    { label: "6. Persoalan", value: persoalan, isPara: true },
-                    { label: "7. Intervensi GBK", value: intervensi, isPara: true }
+                    { label: "1. Jenis Perkhidmatan", value: "Kaunseling Individu", isPara: false },
+                    { label: "2. Tajuk / Isu", value: "Pengurusan Gaya Hidup Sihat", isPara: false },
+                    { label: "3. Pendekatan", value: "Perkembangan", isPara: false },
+                    { label: "4. Fokus Utama", value: "Pembangunan & Perkembangan Sahsiah Diri Murid", isPara: false },
+                    { label: "5. Fokus Sampingan", value: "Pengurusan Diri / Kesihatan Diri", isPara: false },
+                    { label: "6. Perkara", value: "GBK menjalankan sesi kaunseling individu terhadap murid berkaitan kesedaran mengamalkan gaya hidup sihat. Murid dibimbing untuk mengenal pasti corak pemakanan harian, pengambilan minuman, kepentingan aktiviti fizikal serta kesan penjagaan kesihatan terhadap kesejahteraan diri.", isPara: true },
+                    { label: "7. Persoalan", value: "Apakah perubahan kecil yang boleh kamu lakukan dalam pemakanan dan aktiviti harian untuk menjaga kesihatan diri?", isPara: true },
+                    { label: "8. Intervensi GBK", value: "GBK menggunakan pendekatan kaunseling yang berfokus kepada kesedaran kendiri dan perubahan tingkah laku dengan membantu murid menilai tabiat pemakanan semasa, mengenal pasti pilihan yang lebih sihat serta membina pelan tindakan realistik seperti mengurangkan makanan kurang berkhasiat, memilih minuman yang sesuai dan meningkatkan aktiviti senaman. Murid digalakkan membuat perubahan secara berperingkat dan bertanggungjawab terhadap kesihatan diri.", isPara: true }
                 ];
-
+            } else if (lower.includes("bimbingan kelas") || lower.includes("peraturan") || (lower.includes("tahun 1") && lower.includes("tentang"))) {
+                dataFields = [
+                    { label: "1. Jenis Perkhidmatan", value: "Bimbingan Kelas", isPara: false },
+                    { label: "2. Tajuk / Aktiviti", value: "Peraturan Kelas dan Sekolah", isPara: false },
+                    { label: "3. Pendekatan", value: "Pencegahan", isPara: false },
+                    { label: "4. Fokus Utama", value: "Pembangunan & Perkembangan Sahsiah Diri Murid", isPara: false },
+                    { label: "5. Perkara", value: "GBK melaksanakan sesi bimbingan kelas kepada murid berkaitan peraturan kelas dan sekolah. Murid diberi penerangan tentang kepentingan mematuhi peraturan, tanggungjawab sebagai murid serta kesan positif terhadap diri dan persekitaran sekolah.", isPara: true },
+                    { label: "6. Persoalan", value: "Mengapakah kita perlu mematuhi peraturan kelas dan sekolah?", isPara: true },
+                    { label: "7. Intervensi GBK", value: "GBK memberikan penerangan, soal jawab dan aktiviti interaktif bagi meningkatkan kesedaran murid tentang kepentingan disiplin serta pematuhan peraturan.", isPara: true }
+                ];
             } else if (lower.includes("konsultansi") || lower.includes("ibu bapa") || lower.includes("waris")) {
-                serviceType = "Konsultansi";
-                let tajuk = "Konsultansi Bersama Waris Mengenai Hala Tuju Kerjaya Murid";
-                let pendekatan = "Perkembangan";
-                let fokusUtama = "Pendidikan Kerjaya Murid";
-                let perkara = "GBK menjalankan sesi konsultansi bersama waris bagi membincangkan perancangan hala tuju serta perkembangan potensi akademik dan kerjaya murid secara kolaboratif.";
-                let persoalan = "Bagaimanakah ibu bapa dan pihak sekolah boleh bekerjasama dalam memastikan kejayaan masa depan murid?";
-                let intervensi = "GBK memberikan khidmat nasihat, penerangan terperinci, sesi soal jawab terbuka, serta perbincangan strategik bersama waris untuk menyokong perkembangan murid.";
-
                 dataFields = [
-                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
-                    { label: "2. Tajuk", value: tajuk, isPara: false },
-                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
-                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
-                    { label: "5. Perkara", value: perkara, isPara: true },
-                    { label: "6. Persoalan", value: persoalan, isPara: true },
-                    { label: "7. Intervensi GBK", value: intervensi, isPara: true }
+                    { label: "1. Jenis Perkhidmatan", value: "Konsultansi", isPara: false },
+                    { label: "2. Tajuk", value: "Konsultansi Bersama Waris Mengenai Hala Tuju Kerjaya Murid", isPara: false },
+                    { label: "3. Pendekatan", value: "Perkembangan", isPara: false },
+                    { label: "4. Fokus Utama", value: "Pendidikan Kerjaya Murid", isPara: false },
+                    { label: "5. Perkara", value: "GBK menjalankan sesi konsultansi bersama waris bagi membincangkan perancangan hala tuju serta perkembangan potensi akademik dan kerjaya murid secara kolaboratif.", isPara: true },
+                    { label: "6. Persoalan", value: "Bagaimanakah ibu bapa dan pihak sekolah boleh bekerjasama dalam memastikan kejayaan masa depan murid?", isPara: true },
+                    { label: "7. Intervensi GBK", value: "GBK memberikan khidmat nasihat, penerangan terperinci, sesi soal jawab terbuka, serta perbincangan strategik bersama waris untuk menyokong perkembangan murid.", isPara: true }
                 ];
-
             } else if (lower.includes("bimbingan kelompok")) {
-                serviceType = "Bimbingan Kelompok";
-                let tajuk = "Bimbingan Kemahiran Belajar dan Pengurusan Masa";
-                let pendekatan = "Perkembangan";
-                let fokusUtama = "Pembangunan & Perkembangan Sahsiah Diri Murid";
-                let perkara = "GBK melaksanakan sesi bimbingan kelompok kepada sekumpulan murid untuk membincangkan strategi kemahiran belajar yang sistematik dan pengurusan masa yang berkesan.";
-                let persoalan = "Apakah jadual harian yang paling berkesan untuk membantu kamu mengulang kaji pelajaran dengan teratur?";
-                let intervensi = "GBK menjalankan bimbingan melalui penerangan kaedah belajar, perbincangan kelompok, sesi soal jawab, serta aktiviti refleksi minda.";
-
                 dataFields = [
-                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
-                    { label: "2. Tajuk", value: tajuk, isPara: false },
-                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
-                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
-                    { label: "5. Perkara", value: perkara, isPara: true },
-                    { label: "6. Persoalan", value: persoalan, isPara: true },
-                    { label: "7. Intervensi GBK", value: intervensi, isPara: true }
+                    { label: "1. Jenis Perkhidmatan", value: "Bimbingan Kelompok", isPara: false },
+                    { label: "2. Tajuk", value: "Bimbingan Kemahiran Belajar dan Pengurusan Masa", isPara: false },
+                    { label: "3. Pendekatan", value: "Perkembangan", isPara: false },
+                    { label: "4. Fokus Utama", value: "Pembangunan & Perkembangan Sahsiah Diri Murid", isPara: false },
+                    { label: "5. Perkara", value: "GBK melaksanakan sesi bimbingan kelompok kepada sekumpulan murid untuk membincangkan strategi kemahiran belajar yang sistematik dan pengurusan masa yang berkesan.", isPara: true },
+                    { label: "6. Persoalan", value: "Apakah jadual harian yang paling berkesan untuk membantu kamu mengulang kaji pelajaran dengan teratur?", isPara: true },
+                    { label: "7. Intervensi GBK", value: "GBK menjalankan bimbingan melalui penerangan kaedah belajar, perbincangan kelompok, sesi soal jawab, serta aktiviti refleksi minda.", isPara: true }
                 ];
-
-            } else if (lower.includes("kaunseling kelompok")) {
-                serviceType = "Kaunseling Kelompok";
-                let tajuk = "Pengurusan Emosi dan Konflik Rakan Sebaya";
-                let pendekatan = "Pemulihan";
-                let fokusUtama = "Psikososial & Kesejahteraan Mental Murid";
-                let fokusSampingan = "Pengurusan Emosi";
-                let teori = "Reality Therapy / CTRT";
-                let perkara = "GBK menjalankan sesi kaunseling kelompok terhadap sekumpulan murid bagi membantu mereka menangani konflik dan membina kemahiran komunikasi yang sihat.";
-                let persoalan = "Apakah cara terbaik yang boleh kamu lakukan untuk mengawal emosi ketika berhadapan dengan provokasi rakan?";
-                let intervensi = "GBK menggunakan teori Reality Therapy / CTRT di mana ahli kelompok membincangkan tingkah laku semasa, menilai kesan tindakan, serta melatih kemahiran menyelesaikan konflik secara membina.";
-
-                dataFields = [
-                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
-                    { label: "2. Tajuk / Isu", value: tajuk, isPara: false },
-                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
-                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
-                    { label: "5. Fokus Sampingan", value: fokusSampingan, isPara: false },
-                    { label: "6. Teori Kaunseling", value: teori, isPara: false },
-                    { label: "7. Perkara", value: perkara, isPara: true },
-                    { label: "8. Persoalan", value: persoalan, isPara: true },
-                    { label: "9. Intervensi GBK", value: intervensi, isPara: true }
-                ];
-
             } else {
-                // Default: Kaunseling Individu
-                serviceType = "Kaunseling Individu";
-                let tajuk = "Pengurusan Emosi dan Stres Kendiri Murid";
-                let pendekatan = "Pemulihan";
-                let fokusUtama = "Psikososial & Kesejahteraan Mental Murid";
-                let fokusSampingan = "Pengurusan Emosi";
-                let teori = "CBT (Cognitive Behavioral Therapy)";
-                let perkara = "GBK menjalankan sesi kaunseling individu terhadap murid bagi membantu mengenal pasti punca stres, menguruskan emosi negatif, dan mencari alternatif penyelesaian tingkah laku yang positif.";
-                let persoalan = "Apakah cara yang boleh kamu lakukan untuk mengawal emosi dan mengatasi tekanan yang dihadapi?";
-                let intervensi = "GBK menggunakan pendekatan teori CBT (Cognitive Behavioral Therapy) bagi membantu murid mengenal pasti corak pemikiran negatif, mencabar kognisi tersebut, serta membimbing murid merangka pelan tindakan tingkah laku yang lebih adaptif.";
+                // Dynamic fallback for other individual counselling inputs
+                let generatedTitle = "Sesi Kaunseling Individu Berkaitan Isu Murid";
+                let generatedPerkara = "GBK menjalankan sesi kaunseling individu terhadap murid bagi membincangkan isu yang dihadapi serta membimbing murid meneroka penyelesaian kendiri secara membina.";
+                let generatedPersoalan = "Apakah langkah pertama yang boleh kamu ambil untuk mengatasi situasi ini?";
+                let generatedIntervensi = "GBK menggunakan pendekatan kaunseling sokongan empati dan penerokaan mendalam untuk membantu murid mengenalpasti pilihan tindakan yang konstruktif.";
 
                 dataFields = [
-                    { label: "1. Jenis Perkhidmatan", value: serviceType, isPara: false },
-                    { label: "2. Tajuk / Isu", value: tajuk, isPara: false },
-                    { label: "3. Pendekatan", value: pendekatan, isPara: false },
-                    { label: "4. Fokus Utama", value: fokusUtama, isPara: false },
-                    { label: "5. Fokus Sampingan", value: fokusSampingan, isPara: false },
-                    { label: "6. Teori Kaunseling", value: teori, isPara: false },
-                    { label: "7. Perkara", value: perkara, isPara: true },
-                    { label: "8. Persoalan", value: persoalan, isPara: true },
-                    { label: "9. Intervensi GBK", value: intervensi, isPara: true }
+                    { label: "1. Jenis Perkhidmatan", value: "Kaunseling Individu", isPara: false },
+                    { label: "2. Tajuk / Isu", value: generatedTitle, isPara: false },
+                    { label: "3. Pendekatan", value: "Pemulihan", isPara: false },
+                    { label: "4. Fokus Utama", value: "Psikososial & Kesejahteraan Mental Murid", isPara: false },
+                    { label: "5. Perkara", value: generatedPerkara, isPara: true },
+                    { label: "6. Persoalan", value: generatedPersoalan, isPara: true },
+                    { label: "7. Intervensi GBK", value: generatedIntervensi, isPara: true }
                 ];
             }
 
             // Build DOM and compile text representation
             currentReportText = "";
-            dataFields.forEach((field, index) => {
+            dataFields.forEach((field) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'sequence-item';
                 
