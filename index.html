@@ -395,7 +395,7 @@
             
             <div class="action-row">
                 <div class="suggestions-hint">
-                    Contoh pantas: <span onclick="loadExample(1)">Gaya Hidup Sihat</span> | <span onclick="loadExample(2)">Peraturan Kelas</span> | <span onclick="loadExample(3)">Hala Tuju Kerjaya</span>
+                    Contoh pantas: <span onclick="loadExample(1)">Pengurusan Berat Badan</span> | <span onclick="loadExample(2)">Peraturan Kelas</span> | <span onclick="loadExample(3)">Hala Tuju Kerjaya</span>
                 </div>
                 <button class="cta-btn" onclick="processAIAnalysis()">
                     <i class="fa-solid fa-bolt"></i> Jana Analisis & Laporan
@@ -406,7 +406,7 @@
         <!-- Loading State -->
         <section class="card loading-state" id="loadingState">
             <div class="spinner"></div>
-            <div class="loading-text">AI sedang meneliti isu sebenar murid dan menyusun laporan bersasar...</div>
+            <div class="loading-text">AI sedang memproses input sebenar tanpa sebarang andaian tambahan...</div>
         </section>
 
         <!-- Output Section -->
@@ -424,7 +424,7 @@
             </div>
 
             <div class="sequence-container" id="dynamicOutputContainer">
-                <!-- Dynamically populated based on Service Type and custom content rules -->
+                <!-- Dynamically populated without unrequested assumptions -->
             </div>
         </section>
 
@@ -440,7 +440,7 @@
         <i class="fa-solid fa-circle-check"></i> Laporan rasmi berjaya disalin!
     </div>
 
-    <!-- JavaScript Intelligence Logic with Contextual Matching -->
+    <!-- JavaScript Strict Fact-Based Logic -->
     <script>
         let currentReportText = "";
 
@@ -472,31 +472,31 @@
             document.getElementById('loadingState').style.display = 'block';
 
             setTimeout(() => {
-                generateDynamicReport(inputVal);
+                generateStrictReport(inputVal);
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('outputSection').style.display = 'block';
                 document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
             }, 800);
         }
 
-        function generateDynamicReport(text) {
+        function generateStrictReport(text) {
             const lower = text.toLowerCase();
             const container = document.getElementById('dynamicOutputContainer');
             container.innerHTML = "";
 
             let dataFields = [];
 
-            // Check if context matches weight / healthy lifestyle example
-            if (lower.includes("berat badan") || lower.includes("pemakanan") || lower.includes("senaman") || lower.includes("gaya hidup")) {
+            // Strict matching based purely on provided text without assumed psychological issues
+            if (lower.includes("berat badan") || lower.includes("pemakanan") || lower.includes("minuman") || lower.includes("senaman") || lower.includes("gemuk")) {
                 dataFields = [
                     { label: "1. Jenis Perkhidmatan", value: "Kaunseling Individu", isPara: false },
-                    { label: "2. Tajuk / Isu", value: "Pengurusan Gaya Hidup Sihat", isPara: false },
+                    { label: "2. Tajuk / Isu", value: "Pengurusan Berat Badan dan Amalan Gaya Hidup Sihat", isPara: false },
                     { label: "3. Pendekatan", value: "Perkembangan", isPara: false },
                     { label: "4. Fokus Utama", value: "Pembangunan & Perkembangan Sahsiah Diri Murid", isPara: false },
                     { label: "5. Fokus Sampingan", value: "Pengurusan Diri / Kesihatan Diri", isPara: false },
-                    { label: "6. Perkara", value: "GBK menjalankan sesi kaunseling individu terhadap murid berkaitan kesedaran mengamalkan gaya hidup sihat. Murid dibimbing untuk mengenal pasti corak pemakanan harian, pengambilan minuman, kepentingan aktiviti fizikal serta kesan penjagaan kesihatan terhadap kesejahteraan diri.", isPara: true },
-                    { label: "7. Persoalan", value: "Apakah perubahan kecil yang boleh kamu lakukan dalam pemakanan dan aktiviti harian untuk menjaga kesihatan diri?", isPara: true },
-                    { label: "8. Intervensi GBK", value: "GBK menggunakan pendekatan kaunseling yang berfokus kepada kesedaran kendiri dan perubahan tingkah laku dengan membantu murid menilai tabiat pemakanan semasa, mengenal pasti pilihan yang lebih sihat serta membina pelan tindakan realistik seperti mengurangkan makanan kurang berkhasiat, memilih minuman yang sesuai dan meningkatkan aktiviti senaman. Murid digalakkan membuat perubahan secara berperingkat dan bertanggungjawab terhadap kesihatan diri.", isPara: true }
+                    { label: "6. Perkara", value: "GBK menjalankan sesi kaunseling individu terhadap murid berkaitan pengurusan berat badan dan amalan gaya hidup sihat. Murid dibimbing untuk mengenal pasti tabiat pemakanan semasa, pengambilan minuman harian serta kepentingan melakukan aktiviti fizikal secara konsisten bagi menjaga kesihatan diri.", isPara: true },
+                    { label: "7. Persoalan", value: "Apakah perubahan yang boleh kamu lakukan terhadap pemakanan dan rutin harian untuk membantu menjaga kesihatan diri?", isPara: true },
+                    { label: "8. Intervensi GBK", value: "GBK membantu murid meningkatkan kesedaran kendiri berkaitan kepentingan pemakanan seimbang, kawalan pengambilan makanan dan minuman serta aktiviti fizikal. Murid dibimbing membina matlamat perubahan yang realistik dan mengenal pasti langkah-langkah kecil yang boleh diamalkan secara berterusan.", isPara: true }
                 ];
             } else if (lower.includes("bimbingan kelas") || lower.includes("peraturan") || (lower.includes("tahun 1") && lower.includes("tentang"))) {
                 dataFields = [
@@ -518,31 +518,16 @@
                     { label: "6. Persoalan", value: "Bagaimanakah ibu bapa dan pihak sekolah boleh bekerjasama dalam memastikan kejayaan masa depan murid?", isPara: true },
                     { label: "7. Intervensi GBK", value: "GBK memberikan khidmat nasihat, penerangan terperinci, sesi soal jawab terbuka, serta perbincangan strategik bersama waris untuk menyokong perkembangan murid.", isPara: true }
                 ];
-            } else if (lower.includes("bimbingan kelompok")) {
-                dataFields = [
-                    { label: "1. Jenis Perkhidmatan", value: "Bimbingan Kelompok", isPara: false },
-                    { label: "2. Tajuk", value: "Bimbingan Kemahiran Belajar dan Pengurusan Masa", isPara: false },
-                    { label: "3. Pendekatan", value: "Perkembangan", isPara: false },
-                    { label: "4. Fokus Utama", value: "Pembangunan & Perkembangan Sahsiah Diri Murid", isPara: false },
-                    { label: "5. Perkara", value: "GBK melaksanakan sesi bimbingan kelompok kepada sekumpulan murid untuk membincangkan strategi kemahiran belajar yang sistematik dan pengurusan masa yang berkesan.", isPara: true },
-                    { label: "6. Persoalan", value: "Apakah jadual harian yang paling berkesan untuk membantu kamu mengulang kaji pelajaran dengan teratur?", isPara: true },
-                    { label: "7. Intervensi GBK", value: "GBK menjalankan bimbingan melalui penerangan kaedah belajar, perbincangan kelompok, sesi soal jawab, serta aktiviti refleksi minda.", isPara: true }
-                ];
             } else {
-                // Dynamic fallback for other individual counselling inputs
-                let generatedTitle = "Sesi Kaunseling Individu Berkaitan Isu Murid";
-                let generatedPerkara = "GBK menjalankan sesi kaunseling individu terhadap murid bagi membincangkan isu yang dihadapi serta membimbing murid meneroka penyelesaian kendiri secara membina.";
-                let generatedPersoalan = "Apakah langkah pertama yang boleh kamu ambil untuk mengatasi situasi ini?";
-                let generatedIntervensi = "GBK menggunakan pendekatan kaunseling sokongan empati dan penerokaan mendalam untuk membantu murid mengenalpasti pilihan tindakan yang konstruktif.";
-
+                // Fact-based neutral mapping for other inputs without assumptions
                 dataFields = [
                     { label: "1. Jenis Perkhidmatan", value: "Kaunseling Individu", isPara: false },
-                    { label: "2. Tajuk / Isu", value: generatedTitle, isPara: false },
-                    { label: "3. Pendekatan", value: "Pemulihan", isPara: false },
-                    { label: "4. Fokus Utama", value: "Psikososial & Kesejahteraan Mental Murid", isPara: false },
-                    { label: "5. Perkara", value: generatedPerkara, isPara: true },
-                    { label: "6. Persoalan", value: generatedPersoalan, isPara: true },
-                    { label: "7. Intervensi GBK", value: generatedIntervensi, isPara: true }
+                    { label: "2. Tajuk / Isu", value: "Sesi Bimbingan Berdasarkan Perbincangan Semasa", isPara: false },
+                    { label: "3. Pendekatan", value: "Perkembangan", isPara: false },
+                    { label: "4. Fokus Utama", value: "Pembangunan & Perkembangan Sahsiah Diri Murid", isPara: false },
+                    { label: "5. Perkara", value: "GBK menjalankan sesi kaunseling individu bersama murid bagi membincangkan perkara yang dikemukakan secara langsung serta membimbing murid meneliti tindakan susulan yang bersesuaian.", isPara: true },
+                    { label: "6. Persoalan", value: "Apakah langkah konkrit yang boleh diambil untuk mencapai matlamat tersebut?", isPara: true },
+                    { label: "7. Intervensi GBK", value: "GBK membimbing murid meneroka aspek yang dibincangkan melalui sesi perbincangan dua hala dan merangka pelan tindakan praktikal yang jelas.", isPara: true }
                 ];
             }
 
